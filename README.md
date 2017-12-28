@@ -22,40 +22,10 @@ crawler api to retrieve realtime data from crytocurrency exchange center
 
 
 
-# Deployment
+# Deployment (TODO)
 
 How to build development environment and how to do release
 
-### Download [release](https://github.com/SpeculationFund/ECCrawler/releases)
-
-
-### Unzip
-
-```
-unzip crawler-yyyymmdd.zip
-```
-
-It is shown as following,
-
-```
-Archive:  crawler-20171213.zip
-  Length      Date    Time    Name
----------  ---------- -----   ----
-        0  2017-12-13 09:29   .Build/
-  2294464  2017-12-13 09:29   .Build/crawler_amd64-20171213
-  1853064  2017-12-13 09:29   .Build/crawler_386-20171213
-  1875552  2017-12-13 09:29   .Build/crawler_arm-20171213
----------                     -------
-  6023080                     4 files
-
-```
-
-### Execute 
-
-```
-cd .Build
-./crawler_armd64-20171213
-```
                                                                                                                                                                                           
 
 # Getting Started (TODO)

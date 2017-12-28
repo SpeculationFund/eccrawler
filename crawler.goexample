@@ -1,0 +1,114 @@
+package crawlers
+
+
+import (
+    "time"
+    "encoding/json"
+    "strconv"
+)
+
+
+type _CRAWLER_ struct {
+}
+
+/*
+    _CRAWLER_ ticker structure, according to TODO: append url here 
+    TODO: modify the structure
+*/
+type _CRAWLER_Ticker struct {
+    High string `json:high`
+    Last string `json:last`
+    Timestamp string `json:timestamp`
+    Bid string `json:bid`
+    Ask string `json:ask`
+    Open string `json:open`
+    Vwap string `json:vwap`
+    Volume string `json:volume`
+}
+
+
+/*
+    Formalize data into _CRAWLER_ Ticker
+*/
+func (tc *_CRAWLER_) FormTicker(raw interface{}, ip chan *_CRAWLER_Ticker) {
+    price := &_CRAWLER_Ticker{}
+    json.Unmarshal(raw.([]byte), price)
+    ip <- price
+}
+
+/*
+    Get _CRAWLER_ Ticker by url
+*/
+func (tc *_CRAWLER_) GetTickerByUrl(webapi I_WebAPI, ip chan *_CRAWLER_Ticker, url string) {
+    webchan := make(chan interface{})
+
+    go webapi.Get(url, webchan)
+    go tc.FormTicker(<-webchan, ip)
+}
+
+/*
+    Get _CRAWLER_ Ticker by exchange pair
+*/
+func (tc *_CRAWLER_) GetTickerByPair(webapi I_WebAPI, cryto string, fiat string, result chan interface{}) {
+    // TODO: modify url
+    url :=
+    ticker := make(chan *_CRAWLER_Ticker)
+    go tc.GetTickerByUrl(webapi, ticker, url)
+    t := <-ticker
+    // TODO: modify here according to your requirement
+    bidprice, _ := strconv.ParseFloat(t.Bid, 64)
+    askprice, _ := strconv.ParseFloat(t.Ask, 64)
+    vwap, _ := strconv.ParseFloat(t.Vwap, 64)
+    volume, _ := strconv.ParseFloat(t.Volume, 64)
+
+    r := &Ticker {
+        Bid: bidprice,
+        Ask: askprice,
+        Time: time.Now(),
+        ExchangeCenter: tc.GetExchangeCenterName(),
+        Cryto: cryto,
+        Fiat: fiat,
+        Vwap: vwap,
+        Volume: volume,
+    }
+    result <- r
+}
+
+/*
+    Get _CRAWLER_ Tickers of all exchange currencies 
+*/
+func (tc *_CRAWLER_) GetTickers(webapi I_WebAPI, result chan interface{}) {
+    crytoes := tc.GetCrytoes()
+    fiats := tc.GetFiats()
+    for _, cryto := range crytoes {
+        for _, fiat := range fiats {
+            go tc.GetTickerByPair(webapi, cryto, fiat, result)
+        }
+    }
+}
+
+/*
+    Get exchange center name
+*/
+func (tc *_CRAWLER_) GetExchangeCenterName() string {
+    return "_CRAWLER_"
+}
+
+/*
+    Get crytocurrencies available in _CRAWLER_
+*/
+func (tc *_CRAWLER_) GetCrytoes() []string {
+    return []string {
+        "BTC",
+        "ETH",
+    }
+}
+
+/*
+    Get fiatcurrencies available in _CRAWLER_
+*/
+func (tc *_CRAWLER_) GetFiats() []string {
+    return []string {
+        "USD",
+    }
+}
