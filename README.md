@@ -1,5 +1,5 @@
 # eccrawler
-crawler api to retrieve realtime data from crytocurrency exchange center
+Go package of crawler api to retrieve realtime data from crytocurrency exchange center
 
 ### The data sources
 
@@ -24,8 +24,7 @@ crawler api to retrieve realtime data from crytocurrency exchange center
 
 # Deployment (TODO)
 
-How to build development environment and how to do release
-
+import "github.com/SpeculationFund/eccrawler"
                                                                                                                                                                                           
 
 # Getting Started (TODO)
@@ -53,7 +52,7 @@ Explain how to run the automated tests for this system
 Give an example
 ```
 ### Documentation
-Document list of the project
+* Get go doc by `godoc -http=:6060 -goroot=YOUR_GOROOT`
 
 ### Build
 
