@@ -22,46 +22,72 @@ Go package of crawler api to retrieve realtime data from crytocurrency exchange 
 
 
 
-# Deployment (TODO)
+# Deployment 
 ```
-import "github.com/SpeculationFund/eccrawler"
+package main
+
+
+import (
+
+    "github.com/SpeculationFund/eccrawler"
+    "fmt"
+)
+
+
+
+func main() {
+
+    // Init crawler processor
+    crawlersfactory := &crawlers.C_CrawlerFactory{}
+    cpu := crawlersfactory.CreateCPU()
+
+    result := make(chan interface{})
+    cpu.GetTickers(result)
+    for {
+        fmt.Println(<-result)
+    }
+}
 ```                                                                                                                                                                                          
 
-# Getting Started (TODO)
+# Getting Started (TO BE TESTED)
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. 
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
+Install golang  `sudo apt install golang-go`
 
-```
-Give examples
-```
 
 ### Installing
 
-How to install package
-
+```
+git clone https://github.com/SpeculationFund/eccrawler.git
+cd eccrawler
+go build
+go install
+```
 
 ### Running the tests
 
-Explain how to run the automated tests for this system
+```
+go test
+```
 
-```
-Give an example
-```
 ### Documentation
-* Get go doc by `godoc -http=:6060 -goroot=YOUR_GOROOT`
+* [GoDoc of dbTool](https://godoc.org/github.com/SpeculationFund/eccrawler)
+* [Development docs of dbTool](https://github.com/SpeculationFund/eccrawler/wiki)
 
-### Build
 
-How to build
+### Build 
 
+```
+cd github.com/SpeculationFund/eccrawler
+go build
+```
 
 # Logistics
 
-### Contributing (TODO)
+### Contributing
 
 Please read [CONTRIBUTING.md](https://github.com/SpeculationFund/eccrawler/blob/master/CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
 
