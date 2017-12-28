@@ -74,8 +74,8 @@ go test
 ```
 
 ### Documentation
-* [GoDoc of dbTool](https://godoc.org/github.com/SpeculationFund/eccrawler)
-* [Development docs of dbTool](https://github.com/SpeculationFund/eccrawler/wiki)
+* [GoDoc of accrawler](https://godoc.org/github.com/SpeculationFund/eccrawler)
+* [Development docs of eccrawler](https://github.com/SpeculationFund/eccrawler/wiki)
 
 
 ### Build 
