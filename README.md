@@ -63,7 +63,7 @@ How to build
 
 ### Contributing (TODO)
 
-Please read [CONTRIBUTING.md](TODO) for details on our code of conduct, and the process for submitting pull requests to us.
+Please read [CONTRIBUTING.md](https://github.com/SpeculationFund/eccrawler/blob/master/CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
 
 ### Versioning
 
