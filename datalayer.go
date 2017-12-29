@@ -7,7 +7,6 @@ import (
 
 /*
     Define Ticker
-    TODO: rename as Ticker
 */
 type Ticker struct {
     Bid float64
